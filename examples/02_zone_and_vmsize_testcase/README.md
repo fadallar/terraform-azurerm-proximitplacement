@@ -7,7 +7,7 @@ This example
 - Instanciates a map object with the common Tags ot be applied to all resources --> module "base_tagging"
 - A resource-group --> module "resource_group"
 - Creates an AZ Proximity Placement Group --> module "proximity_pgroup"
-- The proximity group is configured with a zone and a VMsize list 
+- The proximity group is configured with a zone and a VMsize list  
 
 <!-- BEGIN_AUTOMATED_TF_DOCS_BLOCK -->
 ## Main.tf file content
