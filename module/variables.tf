@@ -30,6 +30,10 @@ variable "allowed_vm_sizes" {
 
 variable "zone" {
   description = "Specifies the supported zone of the Proximity Placement Group. Changing this forces a new resource to be created.Allowed_vm_sizes must be set when zone is specified."
-  type        = list(string)
-  default     = []
+  type        = string
+  default     = null
+  validation {
+    condition = var.zone == null ? true : contains (["1","2","3"],var.zone)
+    error_message = "Invalid Zone, zone should be null or any of '1','2','3'"
+  }
 }
