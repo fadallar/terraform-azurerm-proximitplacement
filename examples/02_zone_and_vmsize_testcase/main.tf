@@ -1,34 +1,29 @@
-# TODO: Please modify main.ft file. 
-# All inputs for modules must be defined in locals or referenced from related module outputs. 
-# Try to avoid to use shared resources and add modules which are mandatory for test.
-
 # Please specify local values
 locals {
-  custom_name         = ""
-  stack               = ""
-  landing_zone_slug   = ""
-  location            = ""
-  resource_group_name = ""
+  stack             = "ppg-01"
+  landing_zone_slug = "sbx"
+  location          = "westeurope"
 
-  # specify extra tags value if needed
+  # 
   extra_tags = {
-    tag1 = "",
-    a    = ""
+    tag1 = "FirstTag",
+    tag2 = "SecondTag"
   }
 
-  # specify shared resources
-  diag_log_analytics_workspace_id = ""
+  # base tagging values
+  environment     = "sbx"
+  application     = "terra-module"
+  cost_center     = "CCT"
+  change          = "CHG666"
+  owner           = "Fabrice"
+  spoc            = "Fabrice"
+  tlp_colour      = "WHITE"
+  cia_rating      = "C1I1A1"
+  technical_owner = "Fabrice"
 
-  # specify base tagging values
-  environment     = ""
-  application     = ""
-  cost_center     = ""
-  change          = ""
-  owner           = ""
-  spoc            = ""
-  tlp_colour      = ""
-  cia_rating      = ""
-  technical_owner = ""
+  # ppg values
+  ppg_zone             = "1"
+  ppg_allowed_vm_sizes = "Standard_B2s"
 }
 
 module "regions" {
@@ -60,7 +55,7 @@ module "resource_group" {
 }
 
 # Please specify source as git::ssh://git@ssh.dev.azure.com/v3/ECTL-AZURE/ECTL-Terraform-Modules/<<ADD_MODULE_NAME>>//module?ref=master or with specific tag
-module "<<ADD_MODULE_NAME>>" {
+module "proximity_pgroup" {
   source              = "../../module"
   custom_name         = local.custom_name
   landing_zone_slug   = local.landing_zone_slug
@@ -72,6 +67,7 @@ module "<<ADD_MODULE_NAME>>" {
   default_tags = module.base_tagging.base_tags
   # Extra Tags
   extra_tags = local.extra_tags
-  # TODO: Add module parameters
-
+  # 
+  zone             = local.ppg_zone
+  allowed_vm_sizes = local.ppg_allowed_vm_sizes
 }

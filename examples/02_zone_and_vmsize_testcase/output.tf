@@ -1,6 +1,9 @@
-# TODO: Add all outputs from outputs.tf file inside module folder
+output "proximity_pgroup_id" {
+  description = "Proximity placement group id"
+  value       = module.proximity_pgroup.proximity_placement_group_id
+}
 
-output "<OUTPUT NAME>" {
-  description = "Description"
-  value       = module.<MODULE NAME>.<OUTPUT NAME>
+output "proximity_pgroup_name" {
+  description = "Proximity placement group name"
+  value       = module.proximity_pgroup.proximity_placement_group_name
 }
